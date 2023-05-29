@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galletitas chinas de la suerte</title>
+
+    <style>
+      h2 {
+        font-family: Belta;
+        font-size: 3em;
+      }
+
+      body {
+        background-image: url("background.png");
+        background-size: 55%;
+        background-repeat: no-repeat;
+      }
+
+      .bloque {
+        position: fixed;
+        top: 170px;
+        left: 115px;
+        right: 40px;
+        max-width: 500px;
+      }
+
+      .boton-container {
+        position: fixed;
+        top: 400px;
+        left: 850px;
+      }
+
+      .boton {
+        font-size: 24px;
+        padding: 40px 80px;
+        color: black;
+        font-family: Belta;
+        font-size: xx-large;
+        border-radius: 80px;
+        background-color: #F3C4D9;
+      }
+
+      .heart {
+        position: fixed;
+        top: 400px;
+        left: 850px;
+        animation: float 5s linear infinite;
+        opacity: 0;
+        font-size: 48px; /* Ajusta el tamaño de fuente según tus necesidades */
+      }
+
+      @keyframes float {
+        0% {
+          transform: translate(0, 0);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(500px, -500px);
+          opacity: 0;
+        }
+      }
+
+      @font-face {
+  font-family: "Belta";
+  src: url('belta-regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: bold;
+  font-display:swap;
+
+}
+    </style>
+</head>
+<body>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <div class="bloque">
+    <h2 id="fortune"></h2>
+</div>
+<div class="boton-container">
+    <button class="boton" onclick="mostrarMensaje()"> Otra Galleta! </button>
+    <span id="heartContainer"></span>
+</div>
+<script>
+const mensajes = [
+  "La vida es un viaje, no un destino.",
+  "El éxito no es la clave de la felicidad, la felicidad es la clave del éxito. Si amas lo que haces, tendrás éxito.",
+  "No importa lo lento que vayas, siempre y cuando no te detengas.",
+  "El único modo de hacer un gran trabajo es amar lo que haces.",
+  "El fracaso no es caer, es negarse a levantarse.",
+  "El optimismo es la fe que conduce al logro. Nada se puede hacer sin esperanza y confianza.",
+  "El único límite para alcanzar tus sueños eres tú mismo.",
+  "Si te caes siete veces, levántate ocho.",
+  "No importa cuántas veces fracases, solo tienes que acertar una vez.",
+  "El éxito es la suma de pequeños esfuerzos repetidos día tras día.",
+  "No esperes por el momento perfecto, empieza donde estás y trabaja con lo que tienes.",
+  "El único lugar donde el éxito viene antes que el trabajo es en el diccionario.",
+  "El coraje es la clave para superar los obstáculos y alcanzar tus metas.",
+  "Cada día es una nueva oportunidad para crecer, aprender y mejorar.",
+  "El éxito no tiene atajos, requiere perseverancia y determinación.",
+  "El cambio es inevitable, pero el crecimiento es opcional. Elige crecer.",
+  "No te preocupes por los errores, son lecciones en tu camino hacia el éxito.",
+  "La motivación te ayuda a comenzar, pero el hábito te mantiene en marcha.",
+  "El secreto del éxito está en levantarte una vez más después de cada caída.",
+  "Nunca subestimes tu potencial. Eres más capaz de lo que crees.",
+  "La constancia es la llave que desbloquea las puertas del logro.",
+  "No te conformes con ser bueno, esfuérzate por ser excepcional.",
+  "El éxito no es el destino, es el resultado de un viaje constante hacia tus metas.",
+  "El tiempo que dediques a tus sueños hoy determinará tu éxito mañana.",
+  "La disciplina es el puente entre tus metas y tus logros.",
+  "Las oportunidades no ocurren, las creas. Toma acción y haz que sucedan.",
+  "Cada fracaso es un paso más cerca del éxito. No te rindas.",
+  "La perseverancia es la clave para superar cualquier obstáculo en tu camino.",
+  "Elige el pensamiento positivo y construye una vida llena de posibilidades.",
+  "El éxito no es un accidente, es el resultado de un trabajo arduo y constante.",
+  "Atrévete a soñar en grande y no te conformes con menos de lo que mereces.",
+  "La clave para alcanzar el éxito es creer en ti mismo y en tu capacidad para lograrlo.",
+  "El éxito es el resultado de la persistencia ante los desafíos.",
+  "La actitud determina la altitud. Mantén una actitud positiva y alcanzarás grandes alturas.",
+  "No permitas que el miedo te detenga. Supera tus miedos y lograrás cosas increíbles.",
+  "Cada día es una oportunidad para convertirte en la mejor versión de ti mismo.",
+  "Los límites existen solo en la mente. Rompe tus límites y descubrirás tu verdadero potencial.",
+  "El camino hacia el éxito está lleno de fracasos, pero cada fracaso te acerca más a la victoria.",
+  "El éxito no es solo alcanzar metas, sino también disfrutar el viaje hacia ellas.",
+  "El esfuerzo que hoy inviertas en tu desarrollo te llevará a resultados extraordinarios mañana.",
+  "La confianza en ti mismo es la clave para desbloquear tu máximo potencial.",
+  "No mires hacia atrás con arrepentimiento, mira hacia adelante con determinación y esperanza."
+];
+
+function mostrarMensaje() {
+  var r = Math.floor(Math.random() * mensajes.length);
+  document.getElementById("fortune").innerHTML = mensajes[r];
+
+  var heartContainer = document.getElementById("heartContainer");
+
+  for (var i = 0; i < 3; i++) {
+    var heart = document.createElement("span");
+    heart.innerHTML = "❤️";
+    heart.classList.add("heart");
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+    heartContainer.appendChild(heart);
+
+    setTimeout(function(heart) {
+      heartContainer.removeChild(heart);
+    }, 5000, heart);
+  }
+}
+
+mostrarMensaje();
+</script>
+</body>
+</html>
