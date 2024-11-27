@@ -1,5 +1,7 @@
 Galletitas de la Suerte 🍪✨
 
+live https://fatimaramone.github.io/galletitas/
+
 Este proyecto es una aplicación interactiva basada en JavaScript que genera frases motivacionales al estilo de las galletas chinas de la suerte. Ofrece una experiencia visual encantadora, con corazones animados y un diseño único. Puedes probarlo en vivo en: Galletitas de la Suerte.
 🚀 Características
 
